@@ -77,3 +77,20 @@ body {
     transform: none;
     transition: none;
 }
+
+/* 📌 Animación de entrada del post único */
+@keyframes post-appear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Comienza ligeramente desplazado hacia abajo */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Vuelve a su posición original */
+    }
+}
+
+/* Aplicar la animación al post único */
+.post {
+    animation: post-appear 0.6s ease-out forwards;
+}
