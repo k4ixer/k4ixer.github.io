@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>k4ixer Blog - Post Template</title>
+    <link rel="icon" type="image/x-icon" href="../images/perfil.jpg">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="postscss.css"> <!-- MODIFICAS SOLO ESTE --> 
+    <link rel="stylesheet" href="postscsstwo.css">
+</head>
+<body>
+
+    <!-- Sidebar con perfil -->
+    <aside class="sidebar">
+        <img src="../images/perfil.png" alt="Foto de perfil" class="perfil-foto">
+        <h2 id="nombre">Nombre del Autor</h2>
+
+        <section class="certificaciones">
+            <h3>Certificaciones</h3>
+            <ul id="certificaciones">
+                <li>Certificación en Seguridad Cibernética</li>
+                <li>Certificación en Pentesting Avanzado</li>
+            </ul>
+        </section>
+
+        <section class="sobre-mi">
+            <h3>Sobre mí</h3>
+            <p id="sobre-mi">Soy un apasionado de la ciberseguridad, especializado en pruebas de penetración, desarrollo de herramientas y análisis de vulnerabilidades.</p>
+        </section>
+
+        <section class="redes">
+            <h3>Redes Sociales</h3>
+            <div id="redes">
+                <a href="https://twitter.com/tuusuario" target="_blank">Twitter</a>
+                <a href="https://github.com/tuusuario" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/tuusuario" target="_blank">LinkedIn</a>
+            </div>
+        </section>
+    </aside>
+
+    <!-- Separador -->
+    <div class="separator"></div>
+
+    <!-- Contenedor del post -->
+    <main class="post-container">
+        <button class="back-button" onclick="window.location.href='../index.html';">⬅ Volver al inicio</button>
+
+        <article class="post post-anuncio"> <!-- 🟧 anuncio  / 🟥 video / 🟩 writeup / 🟦 morado = post -->
+            <h1>Presentación de mi página web</h1>
+            <p class="post-meta">Publicado el <span>31 de enero de 2025</span> por <span>k4ixer</span></p>
+            <div class="post-tipo">❗ Anuncio</div> 
+
+            <section>
+                <h2>Bienvenidos a mi página web</h2>
+                <p>En este blog encontraréis una variedad de temas relacionados con la ciberseguridad, como:</p>
+                <ul>
+                    <li>Pentesting web</li>
+                    <li>Certificaciones de pentesting</li>
+                    <li>Writeups de plataformas como Hack The Box, TryHackMe, etc.</li>
+                    <li>Noticias sobre el mundo de la ciberseguridad</li>
+                    <li>Personalización de Linux</li>
+                    <li>Scripting en Bash</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Primer Tutorial: Instalación de Kali Linux</h2>
+                <p>Para comenzar con Kali Linux, vamos a seguir una serie de pasos sencillos:</p>
+                <ol>
+                    <li>Descargar la ISO desde el sitio oficial.</li>
+                    <li>Crear una unidad USB booteable con herramientas como <strong>Rufus</strong> o <strong>Balena Etcher</strong>.</li>
+                    <li>Instalar Kali Linux desde la unidad USB.</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Uso básico de la terminal</h2>
+                <p>La terminal es una herramienta fundamental en cualquier sistema operativo basado en Unix. Aquí te mostramos cómo usarla para realizar tareas básicas:</p>
+                <pre><code>ls -la</code></pre>
+                <p>El comando <strong>ls -la</strong> muestra todos los archivos y carpetas, incluyendo los ocultos, con información detallada.</p>
+            </section>
+
+            <section>
+                <h2>Insertando una cita</h2>
+                <blockquote>
+                    "La ciberseguridad no es solo una cuestión técnica, es una cuestión de conciencia y comportamiento humano."
+                    <footer>- Bruce Schneier</footer>
+                </blockquote>
+            </section>
+
+            <section>
+                <h2>Insertando una imagen destacada</h2>
+                <img src="../images/ciberseguridad.jpg" alt="Imagen sobre ciberseguridad" class="post-image">
+            </section>
+
+            <section>
+                <h2>Enlaces útiles</h2>
+                <p>Si deseas aprender más sobre ciberseguridad, te recomiendo los siguientes recursos:</p>
+                <ul>
+                    <li><a href="https://www.hackthebox.eu/" target="_blank">Hack The Box</a></li>
+                    <li><a href="https://www.tryhackme.com/" target="_blank">TryHackMe</a></li>
+                    <li><a href="https://www.owasp.org/" target="_blank">OWASP</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Uso de código en Markdown</h2>
+                <p>En este blog utilizamos el siguiente formato para mostrar ejemplos de código:</p>
+                <pre><code>git clone https://github.com/usuario/repositorio.git</code></pre>
+                <p>Este comando se utiliza para clonar repositorios desde GitHub.</p>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- IMPORTAR LOS ARCHIVOS JS EN ESTE ORDEN -->
+    <script src="../perfil.js"></script>
+    <script src="../posts.js"></script>
+    <script src="../script.js"></script>
+
+</body>
+</html>
+ 

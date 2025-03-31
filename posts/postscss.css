@@ -1,0 +1,303 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    background-color: #0f0f0f;
+    color: #d1d1d1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+}
+
+/* Sidebar (Perfil) */
+.sidebar {
+    width: 300px;
+    height: 100vh;
+    background: linear-gradient(180deg, #1a1a1a, #121212);
+    padding: 25px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    text-align: center;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.perfil-foto {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #3a3a3a;
+    transition: transform 0.3s ease;
+}
+
+.perfil-foto:hover {
+    transform: scale(1.05);
+}
+
+.sidebar h2 {
+    margin: 12px 0;
+    color: #ffffff;
+    font-size: 22px;
+}
+
+.certificaciones, .sobre-mi, .redes {
+    margin-top: 25px;
+    text-align: left;
+}
+
+h3 {
+    color: #ffffff;
+    border-bottom: 2px solid #3a3a3a;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+    font-size: 18px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin: 6px 0;
+}
+
+/* Redes sociales */
+.redes a {
+    display: block;
+    color: #d1d1d1;
+    text-decoration: none;
+    margin: 6px 0;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.redes a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Separador entre sidebar y posts */
+.separator {
+    width: 3px;
+    background-color: #2e2e2e;
+    height: 100vh;
+    position: fixed;
+    left: 300px;
+}
+
+/* Contenedor de Posts */
+.posts-container {
+    margin-left: 310px;
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+/* Estilo de cada post */
+article {
+    background-color: #1e1e1e;
+    padding: 18px;
+    border-radius: 10px;
+    border-left: 5px solid #3a3a3a;
+    width: calc(50% - 12px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Títulos de posts como enlaces */
+article h2 a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+article h2 a:hover {
+    color: #bbbbbb;
+    text-decoration: underline;
+}
+
+/* AQUI EMPIEZA EL CSS DE LOS POSTS */
+
+/* Contenedor del post individual */
+.post-container {
+    margin-left: 310px;
+    padding: 25px;
+    flex-grow: 1;
+    max-width: none;
+    width: calc(100% - 320px);
+}
+
+/* Botón de volver */
+.back-button {
+    background-color: #252525;
+    color: #d1d1d1;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #3a3a3a;
+}
+
+/* Diseño del artículo */
+.post {
+    background-color: #1e1e1e;
+    padding: 25px;
+    border-radius: 10px;
+    border-left: 5px solid #3a3a3a;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Título */
+.post h1 {
+    color: #ffffff;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+/* Metadatos */
+.post-meta {
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 15px;
+}
+
+/* Imagen destacada */
+.post-image {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 5px;
+    margin: 20px 0;
+    display: block;
+}
+
+/* Listas */
+.post ul, .post ol {
+    margin: 15px 0;
+    padding-left: 25px;
+}
+
+.post ul {
+    list-style-type: disc;
+}
+
+.post ol {
+    list-style-type: decimal;
+}
+
+/* Citas (blockquotes) */
+.post blockquote {
+    border-left: 5px solid #3a3a3a;
+    padding: 12px 18px;
+    margin: 18px 0;
+    background-color: #252525;
+    color: #aaa;
+    font-style: italic;
+}
+
+/* Negritas y cursivas */
+.post strong {
+    color: #ffffff;
+}
+
+.post em {
+    color: #bbbbbb;
+    font-style: italic;
+}
+
+/* Código */
+.post pre {
+    background-color: #252525;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    margin: 15px 0;
+}
+
+.post code {
+    font-family: "Courier New", monospace;
+    color: #dddddd;
+}
+
+/* ============================
+   RESPONSIVE DESIGN
+============================ */
+
+/* 📌 Tablets (menos de 1024px) */
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        width: 250px;
+    }
+    .separator {
+        left: 250px;
+    }
+    .posts-container, .post-container {
+        margin-left: 260px;
+    }
+    article {
+        width: calc(50% - 10px);
+    }
+}
+
+/* 📌 Móviles (menos de 768px) */
+@media screen and (max-width: 768px) {
+    body {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        padding: 20px;
+    }
+
+    .separator {
+        display: none;
+    }
+
+    .posts-container, .post-container {
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+        flex-direction: column;
+    }
+
+    article {
+        width: 100%;
+    }
+}
+
+/* Espacio entre párrafos */
+p {
+    margin-bottom: 8px;
+    color: #d1d1d1;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}

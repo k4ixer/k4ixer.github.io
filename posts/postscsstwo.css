@@ -1,0 +1,79 @@
+/* 📌 Fondo general oscuro */
+body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
+}
+
+/* 📌 Estilos de cada post según su tipo */
+.post-writeup {
+    border-left: 4px solid #1db954; /* Verde más vibrante */
+    background-color: #1a1a1a; /* Fondo más oscuro */
+}
+
+.post-anuncio {
+    border-left: 4px solid #ff9800; /* Naranja más suave */
+    background-color: #1a1a1a;
+}
+
+.post-video {
+    border-left: 4px solid #ff4f5e; /* Rojo vibrante */
+    background-color: #1a1a1a;
+}
+
+.post-morado { 
+    border-left: 4px solid #10abda; 
+    background-color: #1a1a1a;
+}
+
+/* 📌 Estilos del rectángulo pequeño para el tipo de post */
+.post-tipo {
+    display: inline-block;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 6px;
+    text-align: center;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Colores según el tipo */
+.post-writeup .post-tipo {
+    background-color: rgba(29, 185, 84, 0.2); /* Verde más suave */
+    color: #1db954;
+    border: 1px solid #1db954;
+}
+
+.post-anuncio .post-tipo {
+    background-color: rgba(255, 152, 0, 0.2); /* Naranja más suave */
+    color: #ff9800;
+    border: 1px solid #ff9800;
+}
+
+.post-video .post-tipo {
+    background-color: rgba(255, 79, 94, 0.2); /* Rojo más suave */
+    color: #ff4f5e;
+    border: 1px solid #ff4f5e;
+}
+
+.post-morado .post-tipo {  
+    background-color: rgba(16, 171, 218, 0.2);
+    color: #10abda;
+    border: 1px solid #10abda;
+}
+
+/* 📌 Eliminación de animaciones */
+
+/* Eliminamos el hover de la clase .post-tipo */
+.post-tipo:hover {
+    filter: none;
+    cursor: default;
+}
+
+/* Eliminamos la animación en el hover de .post */
+.post:hover {
+    transform: none;
+    transition: none;
+}
