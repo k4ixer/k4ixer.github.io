@@ -1,0 +1,14 @@
+[
+  {
+    "nombre": "Máquina Helpdesk (Easy)",
+    "descripcion": "Writeup de la máquina Helpdesk de la plataforma de HackMyVm.",
+    "ruta": "posts/helpdesk_writeup.md",
+    "tipo": "writeup"
+  },
+  {
+    "nombre": "WpKiller",
+    "descripcion": "WpKiller es una herramienta de enumeración para WordPress. Compatible con Linux y Windows y escrito en python",
+    "url": "https://github.com/k4ixer/WpKiller",
+    "tipo": "herramienta"
+  }
+]
