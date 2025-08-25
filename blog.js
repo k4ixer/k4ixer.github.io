@@ -67,7 +67,10 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(res => res.text())
             .then(md => {
                 postView.innerHTML = `
-                    <div class="bg-gray-900 rounded-lg shadow-md p-6 sm:p-5 border border-gray-800 text-center">
+                    <div class="bg-gray-900 rounded-lg shadow-md p-6 sm:p-5 border border-gray-800">
+                        <button id="back-top" class="mb-4 px-4 py-1 border border-gray-600 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 hover:border-gray-400 transition duration-200 ease-in-out text-sm font-medium">
+                            ← Atrás
+                        </button>
                         <div class="markdown-body mt-4 text-left">
                             ${marked.parse(md)}
                         </div>
@@ -83,14 +86,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 url.searchParams.set('md', post.id);
                 window.history.pushState({}, '', url);
 
-                postView.querySelector("#back-bottom").onclick = () => {
-                    postView.classList.add("hidden");
-                    postsListWrapper.classList.remove("hidden");
-                    
-                    const url = new URL(window.location.href);
-                    url.searchParams.delete('md');
-                    window.history.pushState({}, '', url);
-                };
+                const backBtns = postView.querySelectorAll(".bg-gray-800");
+
+                backBtns.forEach(btn => {
+                    btn.onclick = () => {
+                        postView.classList.add("hidden");
+                        postsListWrapper.classList.remove("hidden");
+                        
+                        const url = new URL(window.location.href);
+                        url.searchParams.delete('md');
+                        window.history.pushState({}, '', url);
+                    };
+                });
             });
     }
 
