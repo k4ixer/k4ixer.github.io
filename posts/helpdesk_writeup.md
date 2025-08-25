@@ -11,8 +11,6 @@ Durante la explotación tocaremos las siguientes técnicas:
 -   Abuso de sockets UNIX
 -   Escalada de privilegios con `pip3`
 
-------------------------------------------------------------------------
-
 ## Enumeración
 
 Comenzamos con un escaneo de puertos con **nmap**:
