@@ -1,7 +1,7 @@
 # Helpdesk - Writeup HackMyVm
 
 El día de hoy veremos cómo resolver la máquina **Helpdesk** de la
-plataforma HackMyVm.\
+plataforma HackMyVM.\
 Durante la explotación tocaremos las siguientes técnicas:
 
 -   Escaneo de puertos

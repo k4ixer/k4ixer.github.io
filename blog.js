@@ -89,13 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const backBtns = postView.querySelectorAll(".bg-gray-800");
 
                 backBtns.forEach(btn => {
+                    // Esta es la parte modificada
                     btn.onclick = () => {
-                        postView.classList.add("hidden");
-                        postsListWrapper.classList.remove("hidden");
-                        
-                        const url = new URL(window.location.href);
-                        url.searchParams.delete('md');
-                        window.history.pushState({}, '', url);
+                        window.location.href = 'index.html';
                     };
                 });
             });
@@ -227,8 +223,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (postsPagination) postsPagination.classList.remove('hidden');
             if (toolsPagination) toolsPagination.classList.add('hidden');
         } else if (tabId === 'tools') {
+            if (postsPagination) toolsPagination.classList.remove('hidden');
             if (postsPagination) postsPagination.classList.add('hidden');
-            if (toolsPagination) toolsPagination.classList.remove('hidden');
         }
     }
     

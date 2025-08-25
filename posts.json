@@ -1,7 +1,13 @@
 [
   {
+    "nombre": "Máquina Lazzycorp (Easy)",
+    "descripcion": "Writeup de la máquina Lazzycorp de la plataforma de HackMyVM.",
+    "ruta": "posts/lazzycorp_writeup.md",
+    "tipo": "writeup"
+  },
+  {
     "nombre": "Máquina Helpdesk (Easy)",
-    "descripcion": "Writeup de la máquina Helpdesk de la plataforma de HackMyVm.",
+    "descripcion": "Writeup de la máquina Helpdesk de la plataforma de HackMyVM.",
     "ruta": "posts/helpdesk_writeup.md",
     "tipo": "writeup"
   },
