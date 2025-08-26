@@ -63,39 +63,75 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showPost(post) {
-        fetch(post.ruta)
-            .then(res => res.text())
-            .then(md => {
-                postView.innerHTML = `
-                    <div class="bg-gray-900 rounded-lg shadow-md p-6 sm:p-5 border border-gray-800">
-                        <button id="back-top" class="mb-4 px-4 py-1 border border-gray-600 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 hover:border-gray-400 transition duration-200 ease-in-out text-sm font-medium">
-                            ← Atrás
-                        </button>
-                        <div class="markdown-body mt-4 text-left">
-                            ${marked.parse(md)}
-                        </div>
-                        <button id="back-bottom" class="mt-6 px-6 py-2 border border-gray-600 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 hover:border-gray-400 transition duration-200 ease-in-out text-sm font-medium">
-                            ← Atrás
-                        </button>
+    fetch(post.ruta)
+        .then(res => res.text())
+        .then(md => {
+            postView.innerHTML = `
+                <div class="bg-gray-900 rounded-lg shadow-md p-6 sm:p-5 border border-gray-800">
+                    <button id="back-top" class="mb-4 px-4 py-1 border border-gray-600 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 hover:border-gray-400 transition duration-200 ease-in-out text-sm font-medium">
+                        ← Atrás
+                    </button>
+                    <div class="markdown-body mt-4 text-left">
+                        ${marked.parse(md)}
                     </div>
-                `;
-                postsListWrapper.classList.add("hidden");
-                postView.classList.remove("hidden");
-                
-                const url = new URL(window.location.href);
-                url.searchParams.set('md', post.id);
-                window.history.pushState({}, '', url);
+                    <button id="back-bottom" class="mt-6 px-6 py-2 border border-gray-600 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 hover:border-gray-400 transition duration-200 ease-in-out text-sm font-medium">
+                        ← Atrás
+                    </button>
+                </div>
+            `;
+            postsListWrapper.classList.add("hidden");
+            postView.classList.remove("hidden");
+            
+            // --- Actualizar la URL ---
+            const url = new URL(window.location.href);
+            url.searchParams.set('md', post.id);
+            window.history.pushState({postId: post.id}, '', url);
 
-                const backBtns = postView.querySelectorAll(".bg-gray-800");
+            // --- Actualizar título y descripción ---
+            document.title = post.nombre; 
+            let metaDesc = document.querySelector("meta[name='description']");
+            if (!metaDesc) {
+                metaDesc = document.createElement("meta");
+                metaDesc.name = "description";
+                document.head.appendChild(metaDesc);
+            }
+            metaDesc.content = post.descripcion; 
 
-                backBtns.forEach(btn => {
-                    // Esta es la parte modificada
-                    btn.onclick = () => {
-                        window.location.href = 'index.html';
-                    };
-                });
+            // Botones de volver
+            const backBtns = postView.querySelectorAll(".bg-gray-800");
+            backBtns.forEach(btn => {
+                btn.onclick = () => {
+                    // Simular ir al índice
+                    window.history.pushState({}, '', 'index.html');
+                    renderPostPage(1);
+                    postView.classList.add("hidden");
+                    postsListWrapper.classList.remove("hidden");
+                    document.title = "k4ixer"; // restaurar título
+                };
             });
+        });
+}
+
+// --- Detectar botón atrás/adelante del navegador ---
+window.addEventListener("popstate", (event) => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('md');
+
+    if (postId) {
+        const postToLoad = allPosts.find(p => p.id === postId);
+        if (postToLoad) {
+            showPost(postToLoad);
+        }
+    } else {
+        // Si no hay ?md=, mostrar lista normal
+        renderPostPage(1);
+        postView.classList.add("hidden");
+        postsListWrapper.classList.remove("hidden");
+        document.title = "k4ixer"; // restaurar título
     }
+});
+
+
 
     function renderPostPage(page) {
         currentPage = page;
