@@ -1,5 +1,11 @@
 [
   {
+    "nombre": "Máquina Luz (Easy)",
+    "descripcion": "Writeup de la máquina Luz de la plataforma de HackMyVM.",
+    "ruta": "posts/luz_writeup.md",
+    "tipo": "writeup"
+  },
+  {
     "nombre": "Máquina Lazzycorp (Easy)",
     "descripcion": "Writeup de la máquina Lazzycorp de la plataforma de HackMyVM.",
     "ruta": "posts/lazzycorp_writeup.md",
