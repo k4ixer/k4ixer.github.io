@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevToolPageBtn = document.getElementById('prev-tool-page');
     const nextToolPageBtn = document.getElementById('next-tool-page');
 
+    // Elementos del buscador
+    const searchInput = document.getElementById('search-input');
+    let filteredPosts = [];
+
     const postsPerPage = 3;
     let allPosts = [];
     let allTools = [];
@@ -135,18 +139,19 @@ window.addEventListener("popstate", (event) => {
 
     function renderPostPage(page) {
     currentPage = page;
+    const postsToRender = filteredPosts.length > 0 ? filteredPosts : allPosts;
     const start = (currentPage - 1) * postsPerPage;
     const end = start + postsPerPage;
-    const postsToShow = allPosts.slice(start, end);
+    const postsToShow = postsToRender.slice(start, end);
     renderPosts(postsToShow);
 
     prevPageBtn.disabled = currentPage === 1;
-    nextPageBtn.disabled = end >= allPosts.length;
+    nextPageBtn.disabled = end >= postsToRender.length;
 
     // --- Mostrar número de página ---
     const pageIndicator = document.getElementById("posts-page-indicator");
     if (pageIndicator) {
-        const totalPages = Math.ceil(allPosts.length / postsPerPage);
+        const totalPages = Math.ceil(postsToRender.length / postsPerPage);
         pageIndicator.textContent = `${currentPage} / ${totalPages}`;
     }
 }
@@ -159,7 +164,8 @@ window.addEventListener("popstate", (event) => {
     };
 
     nextPageBtn.onclick = () => {
-        if ((currentPage * postsPerPage) < allPosts.length) {
+        const postsToRender = filteredPosts.length > 0 ? filteredPosts : allPosts;
+        if ((currentPage * postsPerPage) < postsToRender.length) {
             renderPostPage(currentPage + 1);
         }
     };
@@ -209,6 +215,22 @@ window.addEventListener("popstate", (event) => {
             renderToolPage(currentToolPage + 1);
         }
     };
+    
+    // Añadir evento al input de búsqueda
+    searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        
+        if (query.trim() === '') {
+            filteredPosts = [];
+        } else {
+            filteredPosts = allPosts.filter(post => 
+                post.nombre.toLowerCase().includes(query) ||
+                post.descripcion.toLowerCase().includes(query)
+            );
+        }
+        
+        renderPostPage(1);
+    });
 
     // --- Carga de datos al inicio ---
 
@@ -224,6 +246,9 @@ window.addEventListener("popstate", (event) => {
                 ...tool,
                 id: tool.nombre.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
             }));
+
+            // Inicialmente, los posts filtrados son todos los posts
+            filteredPosts = [...allPosts];
             
             // Revisa si hay un parámetro 'md' en la URL al cargar
             const urlParams = new URLSearchParams(window.location.search);
