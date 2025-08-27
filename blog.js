@@ -134,15 +134,23 @@ window.addEventListener("popstate", (event) => {
 
 
     function renderPostPage(page) {
-        currentPage = page;
-        const start = (currentPage - 1) * postsPerPage;
-        const end = start + postsPerPage;
-        const postsToShow = allPosts.slice(start, end);
-        renderPosts(postsToShow);
+    currentPage = page;
+    const start = (currentPage - 1) * postsPerPage;
+    const end = start + postsPerPage;
+    const postsToShow = allPosts.slice(start, end);
+    renderPosts(postsToShow);
 
-        prevPageBtn.disabled = currentPage === 1;
-        nextPageBtn.disabled = end >= allPosts.length;
+    prevPageBtn.disabled = currentPage === 1;
+    nextPageBtn.disabled = end >= allPosts.length;
+
+    // --- Mostrar número de página ---
+    const pageIndicator = document.getElementById("posts-page-indicator");
+    if (pageIndicator) {
+        const totalPages = Math.ceil(allPosts.length / postsPerPage);
+        pageIndicator.textContent = `${currentPage} / ${totalPages}`;
     }
+}
+
 
     prevPageBtn.onclick = () => {
         if (currentPage > 1) {

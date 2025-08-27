@@ -1,5 +1,11 @@
 [
   {
+    "nombre": "Máquina Hotel (Easy)",
+    "descripcion": "Writeup de la máquina Hotel de la plataforma de HackMyVM.",
+    "ruta": "posts/hotel_writeup.md",
+    "tipo": "writeup"
+  },
+  {
     "nombre": "Máquina Luz (Easy)",
     "descripcion": "Writeup de la máquina Luz de la plataforma de HackMyVM.",
     "ruta": "posts/luz_writeup.md",
