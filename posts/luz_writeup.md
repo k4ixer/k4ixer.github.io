@@ -38,10 +38,10 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
 En el puerto 80 descubrimos que se trata de un sistema llamado **Online Food Ordering System V2**:  
-![alt text](./posts/img/luz001.png)
+![alt text](img/luz001.png)
 
 Buscamos información en Google y encontramos que es vulnerable a **RCE** sin ncesidad de autenticación:  
-![alt text](./posts/img/luz002.png)
+![alt text](img/luz002.png)
 
 ## Explotación
 

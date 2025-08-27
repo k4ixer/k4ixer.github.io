@@ -1,5 +1,11 @@
 [
   {
+    "nombre": "Nueva versión de WpKiller (v0.2)",
+    "descripcion": "He lanzado la versión v0.2 de WpKiller y estas son las novedades.",
+    "ruta": "posts/wpkiller_v02.html",
+    "tipo": "post"
+  },
+  {
     "nombre": "Máquina Hotel (Easy)",
     "descripcion": "Writeup de la máquina Hotel de la plataforma de HackMyVM.",
     "ruta": "posts/hotel_writeup.html",

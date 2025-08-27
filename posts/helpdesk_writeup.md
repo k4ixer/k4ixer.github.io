@@ -34,7 +34,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 En el puerto 80 se muestra un sistema de HelpDesk muy limitado:
 
-![alt text](./posts/img/helpdesk001.png)
+![alt text](img/helpdesk001.png)
 
 Pasamos a enumerar directorios con **gobuster**:
 
@@ -52,7 +52,7 @@ Resultados interesantes:
 En `/debug.php` aparecen credenciales falsas (honeypot).\
 En `/ticket.php` solo aparece el texto *"Ticket Viewer"* vacío:
 
-![alt text](./posts/img/helpdesk002.png)
+![alt text](img/helpdesk002.png)
 
 Esto sugiere que el archivo podría aceptar parámetros. Probamos fuzzing
 con **ffuf**:
@@ -63,19 +63,19 @@ ffuf -u 'http://192.168.1.156/ticket.php?FUZZ=../../../../../../../../etc/passwd
 
 Encontramos un parámetro vulnerable a **LFI**:
 
-![alt text](./posts/img/helpdesk003.png)
+![alt text](img/helpdesk003.png)
 
 ## Explotación
 
 Explorando archivos del sistema vía LFI, en `login.php` encontramos
 comentarios con credenciales en texto claro:
 
-![alt text](./posts/img/helpdesk004.png)
+![alt text](img/helpdesk004.png)
 
 Accedemos con ellas en `/login.php` y entramos a `/panel.php`, donde hay
 ejecución de comandos:
 
-![alt text](./posts/img/helpdesk005.png)
+![alt text](img/helpdesk005.png)
 
 Nos enviamos una reverse shell:
 

@@ -81,7 +81,7 @@ Username: dev
 Password: d3v3l0pm3nt!nt3rn 
 ````
 Guardamos las credenciales y accedemos al puerto 80, donde encontramos la web:
-![alt text](./posts/img/lazzycorp001.png)
+![alt text](img/lazzycorp001.png)
 
 Al no haber nada funcional, procedemos a enumerar directorios con dirsearch:
 ```bash
@@ -113,16 +113,16 @@ Disallow: /cms-admin.php
 Disallow: /auth-lazycorp-dev/
 ````
 Probamos a ver si existía un login.php en /auth-lazycorp-dev/ y reutilizamos las credenciales encontradas:
-![alt text](./posts/img/lazzycorp003.png)
+![alt text](img/lazzycorp003.png)
 
 Logramos entrar y encontramos un sistema de subida de módulos:
-![alt text](./posts/img/lazzycorp004.png)
+![alt text](img/lazzycorp004.png)
 
 Subimos un script **.php** malicioso:
-![alt text](./posts/img/lazzycorp005.png)
+![alt text](img/lazzycorp005.png)
 
 Los archivos se almacenan en /uploads, confirmando la ubicación de nuestra shell:
-![alt text](./posts/img/lazzycorp006.png)
+![alt text](img/lazzycorp006.png)
 
 Nos enviamos una reverse shell:
 ```bash
