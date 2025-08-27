@@ -86,8 +86,6 @@
                 </p>
                 <div class="flex gap-4 text-gray-400 mt-4">
                     <a href="https://github.com/k4ixer" target="_blank" class="hover:text-gray-100 transition">GitHub</a>
-                    <a href="https://twitter.com/k4ixer" target="_blank" class="hover:text-gray-100 transition">Twitter</a>
-                    <a href="https://linkedin.com/in/k4ixer" target="_blank" class="hover:text-gray-100 transition">LinkedIn</a>
                 </div>
             </section>
         </div>
@@ -95,36 +93,25 @@
     <footer class="bg-transparent text-gray-500 text-center py-6 border-t border-gray-900">
         <p>&copy; 2025 k4ixer | Alejandro Herrero</p>
     </footer>
-
-    <script>
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-
-        function setActiveTab(tabId) {
-            tabContents.forEach(content => content.classList.add('hidden'));
-            tabBtns.forEach(btn => {
-                btn.classList.remove('border-gray-100');
-                btn.classList.add('border-transparent');
-            });
-            const activeContent = document.getElementById(tabId + '-section');
-            const activeBtn = document.getElementById('tab-' + tabId);
-            if (activeContent) activeContent.classList.remove('hidden');
-            if (activeBtn) {
-                activeBtn.classList.add('border-gray-100');
-                activeBtn.classList.remove('border-transparent');
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const oldPostId = urlParams.get('md');
+        
+        if (oldPostId) {
+            let newPostName = oldPostId.replace('m-quina-', '');
+            if (newPostName.endsWith('-easy')) {
+                newPostName = newPostName.slice(0, -5);
             }
+            
+            // Construye la nueva URL con la estructura correcta
+            const newPath = `posts/${newPostName}_writeup.html`;
+            
+            // Redirige a la nueva URL
+            window.location.replace(newPath);
         }
-
-        tabBtns.forEach(btn => {
-            btn.onclick = () => {
-                const tabId = btn.id.replace('tab-', '');
-                setActiveTab(tabId);
-            };
-        });
-
-        // Esta línea asegura que la pestaña de Posts esté activa al cargar
-        setActiveTab('posts');
-    </script>
+    });
+</script>
     <script src="blog.js"></script>
 </body>
 </html>

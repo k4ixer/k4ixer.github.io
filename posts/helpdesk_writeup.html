@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>k4ixer - Helpdesk Writeup (Easy)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="../post.css">
+    <link rel="icon" href="../imagenPerfil_1.png" type="image/x-icon">
+    <meta name="color-scheme" content="dark" />
+    <script>
+        window.postMarkdownPath = '../posts/helpdesk_writeup.md';
+    </script>
+</head>
+<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col font-sans">
+    <header class="w-full max-w-5xl mx-auto px-4 pt-8 pb-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="flex flex-col items-center sm:items-start">
+            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-1">k4ixer</h1>
+            <p class="text-base text-gray-400">Alejandro Herrero</p>
+        </div>
+        <nav class="flex gap-4 sm:gap-6 mt-4 sm:mt-0">
+            <a href="/index.html" class="tab-btn text-gray-100 font-medium pb-1 border-b-2 border-transparent hover:border-gray-400 transition whitespace-nowrap">Posts</a>
+            <a href="/index.html" class="tab-btn text-gray-100 font-medium pb-1 border-b-2 border-transparent hover:border-gray-400 transition whitespace-nowrap">Mis herramientas</a>
+            <a href="/index.html" class="tab-btn text-gray-100 font-medium pb-1 border-b-2 border-transparent hover:border-gray-400 transition whitespace-nowrap md:hidden">Sobre mí</a>
+        </nav>
+    </header>
+    <hr class="w-full max-w-5xl mx-auto border-gray-800" />
+    <main class="flex-1 container mx-auto px-4 py-8 max-w-5xl grid grid-cols-1 md:grid-cols-4 gap-8">
+        <aside class="hidden md:flex flex-col items-start gap-4 sticky top-8 h-fit">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <img src="../imagenPerfil_1.png" alt="Perfil de k4ixer" class="w-28 h-28 rounded-full border-2 border-gray-700 object-cover" />
+                <div class="flex flex-col items-center md:items-start">
+                    <h2 class="text-xl font-semibold">Alejandro Herrero</h2>
+                    <p class="text-sm text-gray-400">Ciberseguridad y Hacking Ético</p>
+                </div>
+            </div>
+            <p class="text-gray-300 text-sm mt-2 leading-relaxed">
+                ¡Hola! Soy un apasionado de la ciberseguridad y el hacking ético. Este es mi portfolio y blog personal donde comparto mis proyectos, herramientas y artículos.
+            </p>
+            <div class="flex gap-4 text-gray-400 mt-2">
+                <a href="https://github.com/k4ixer" target="_blank" class="hover:text-gray-100 transition">GitHub</a>
+            </div>
+        </aside>
+
+        <div class="col-span-1 md:col-span-3">
+            <section id="post-view-section">
+                </section>
+        </div>
+    </main>
+    <footer class="bg-transparent text-gray-500 text-center py-6 border-t border-gray-900">
+        <p>&copy; 2025 k4ixer | Alejandro Herrero</p>
+    </footer>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const oldPostId = urlParams.get('md');
+        
+        if (oldPostId) {
+            // Construye la nueva URL basándose en el ID del post antiguo.
+            // Asegúrate de que el nombre del archivo HTML coincida con este formato.
+            const newPath = `/${oldPostId}_post.html`;
+            
+            // Redirige a la nueva URL
+            window.location.replace(newPath);
+        }
+    });
+    </script>
+    <script src="render-post.js"></script>
+</body>
+</html>

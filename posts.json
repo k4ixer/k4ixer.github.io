@@ -2,25 +2,25 @@
   {
     "nombre": "Máquina Hotel (Easy)",
     "descripcion": "Writeup de la máquina Hotel de la plataforma de HackMyVM.",
-    "ruta": "posts/hotel_writeup.md",
+    "ruta": "posts/hotel_writeup.html",
     "tipo": "writeup"
   },
   {
     "nombre": "Máquina Luz (Easy)",
     "descripcion": "Writeup de la máquina Luz de la plataforma de HackMyVM.",
-    "ruta": "posts/luz_writeup.md",
+    "ruta": "posts/luz_writeup.html",
     "tipo": "writeup"
   },
   {
     "nombre": "Máquina Lazzycorp (Easy)",
     "descripcion": "Writeup de la máquina Lazzycorp de la plataforma de HackMyVM.",
-    "ruta": "posts/lazzycorp_writeup.md",
+    "ruta": "posts/lazzycorp_writeup.html",
     "tipo": "writeup"
   },
   {
     "nombre": "Máquina Helpdesk (Easy)",
     "descripcion": "Writeup de la máquina Helpdesk de la plataforma de HackMyVM.",
-    "ruta": "posts/helpdesk_writeup.md",
+    "ruta": "posts/helpdesk_writeup.html",
     "tipo": "writeup"
   },
   {
