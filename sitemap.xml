@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>https://www.k4ixer.github.io</loc>
+		<loc>https://4ixer.github.io</loc>
 		<priority>1.00</priority>
-		<lastmod>2025-08-27</lastmod>
+		<lastmod>2025-08-28</lastmod>
 	</url>
 	<url>
-		<loc>https://www.k4ixer.github.io/posts/luz_writeup.html</loc>
+		<loc>https://k4ixer.github.io/posts/luz_writeup.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2025-08-27</lastmod>
+		<lastmod>2025-08-28</lastmod>
 	</url>
 	<url>
-		<loc>https://www.k4ixer.github.io/posts/lazzycorp_writeup.html</loc>
+		<loc>https://k4ixer.github.io/posts/lazzycorp_writeup.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2025-08-27</lastmod>
+		<lastmod>2025-08-28</lastmod>
 	</url>
 	<url>
-		<loc>https://www.k4ixer.github.io/posts/hotel_writeup.html</loc>
+		<loc>https://k4ixer.github.io/posts/hotel_writeup.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2025-08-27</lastmod>
+		<lastmod>2025-08-28</lastmod>
 	</url>
 	<url>
-		<loc>https://www.k4ixer.github.io/posts/helpdesk_writeup.html</loc>
+		<loc>https://k4ixer.github.io/posts/helpdesk_writeup.html</loc>
 		<priority>0.33</priority>
-		<lastmod>2025-08-27</lastmod>
+		<lastmod>2025-08-28</lastmod>
+	</url>
+	<url>
+		<loc>https://k4ixer.github.io/posts/wpkiller_v02.html</loc>
+		<priority>0.33</priority>
+		<lastmod>2025-08-28</lastmod>
 	</url>
 </urlset>
