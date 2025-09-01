@@ -1,5 +1,11 @@
 [
   {
+    "nombre": "Mi experiencia usando Ubuntu como sistema principal",
+    "descripcion": "Mi experiencia usando Ubuntu como sistema principal.",
+    "ruta": "posts/experiencia_linux.html",
+    "tipo": "post"
+  },
+  {
     "nombre": "Nueva versión de WpKiller (v0.2)",
     "descripcion": "He lanzado la versión v0.2 de WpKiller y estas son las novedades.",
     "ruta": "posts/wpkiller_v02.html",
