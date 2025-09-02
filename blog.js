@@ -10,10 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevToolPageBtn = document.getElementById('prev-tool-page');
     const nextToolPageBtn = document.getElementById('next-tool-page');
 
-    // Elementos del buscador
+    // Elementos del buscador y filtros
     const searchInput = document.getElementById('search-input');
-    let filteredPosts = [];
+    const filterAllBtn = document.getElementById("filter-all");
+    const filterPostsBtn = document.getElementById("filter-posts");
+    const filterWriteupsBtn = document.getElementById("filter-writeups");
+    const filterButtons = [filterAllBtn, filterPostsBtn, filterWriteupsBtn];
 
+    let filteredPosts = [];
     const postsPerPage = 3;
     let allPosts = [];
     let allTools = [];
@@ -21,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentToolPage = 1;
 
     function getPostIdFromPath(pathname) {
-        // Elimina las barras iniciales y finales y retorna el ID del post
         const parts = pathname.split('/').filter(p => p);
         return parts.length > 0 ? parts[parts.length - 1] : null;
     }
@@ -68,9 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // El resto de las funciones se mantienen, pero la lógica de showPost y el manejo del historial ya no son necesarios para este método.
-    // Aunque el código siguiente no se usará al hacer clic en el enlace, lo mantengo para manejar las redirecciones del sitemap y la carga inicial.
-
     function showPost(post) {
         fetch(`/${post.ruta}`)
             .then(res => res.text())
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         renderPostPage(1);
                         postView.classList.add("hidden");
                         postsListWrapper.classList.remove("hidden");
-                        document.title = "k4ixer"; // restaurar título
+                        document.title = "k4ixer";
                     };
                 });
             });
@@ -115,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
         prevPageBtn.disabled = currentPage === 1;
         nextPageBtn.disabled = end >= postsToRender.length;
 
-        // --- Mostrar número de página ---
         const pageIndicator = document.getElementById("posts-page-indicator");
         if (pageIndicator) {
             const totalPages = Math.ceil(postsToRender.length / postsPerPage);
@@ -142,7 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
         toolsList.innerHTML = '';
         tools.forEach((tool) => {
             const card = document.createElement('div');
-            // Usamos las mismas clases de estilo que para las tarjetas de posts
             card.className = `bg-gray-900 rounded-lg shadow-sm p-4 flex flex-col justify-between border border-gray-800 transition-all duration-300 cursor-pointer`;
             
             card.innerHTML = `
@@ -182,12 +180,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
     
-    // Añadir evento al input de búsqueda
+    // --- Buscador ---
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.toLowerCase();
         
         if (query.trim() === '') {
-            filteredPosts = [];
+            filteredPosts = [...allPosts];
         } else {
             filteredPosts = allPosts.filter(post => 
                 post.nombre.toLowerCase().includes(query) ||
@@ -198,8 +196,33 @@ document.addEventListener("DOMContentLoaded", () => {
         renderPostPage(1);
     });
 
-    // --- Carga de datos al inicio y manejo de redirecciones ---
+    // --- Filtros ---
+    function setActiveFilter(button) {
+        filterButtons.forEach(btn => {
+            btn.classList.remove("ring-2", "ring-gray-700");
+        });
+        button.classList.add("ring-2", "ring-gray-700");
+    }
 
+    filterAllBtn.addEventListener("click", () => {
+        filteredPosts = [...allPosts];
+        renderPostPage(1);
+        setActiveFilter(filterAllBtn);
+    });
+
+    filterPostsBtn.addEventListener("click", () => {
+        filteredPosts = allPosts.filter(p => p.tipo === "post");
+        renderPostPage(1);
+        setActiveFilter(filterPostsBtn);
+    });
+
+    filterWriteupsBtn.addEventListener("click", () => {
+        filteredPosts = allPosts.filter(p => p.tipo === "writeup");
+        renderPostPage(1);
+        setActiveFilter(filterWriteupsBtn);
+    });
+
+    // --- Carga inicial ---
     fetch('posts.json')
         .then(res => res.json())
         .then(posts => {
@@ -213,41 +236,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 id: tool.nombre.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
             }));
 
-            // Inicialmente, los posts filtrados son todos los posts
+            // Mostrar todos y marcar "Todos" al iniciar
             filteredPosts = [...allPosts];
-            
-            // --- MANEJO DE REDIRECCIONES y carga inicial ---
-            const urlParams = new URLSearchParams(window.location.search);
-            const oldPostId = urlParams.get('md');
-            const newPostId = getPostIdFromPath(window.location.pathname);
-
-            if (oldPostId) {
-                // Redirigir la URL antigua a la nueva
-                const postToLoad = allPosts.find(p => p.id === oldPostId);
-                if (postToLoad) {
-                    const newUrl = `${window.location.origin}/${oldPostId}`;
-                    window.location.replace(newUrl);
-                } else {
-                    renderPostPage(1);
-                }
-            } else if (newPostId) {
-                // Cargar el post con la nueva URL limpia
-                const postToLoad = allPosts.find(p => p.id === newPostId);
-                if (postToLoad) {
-                    showPost(postToLoad);
-                } else {
-                    // Si no se encuentra, carga la página principal
-                    renderPostPage(1);
-                }
-            } else {
-                // Carga normal de la página principal
-                renderPostPage(1);
-            }
+            renderPostPage(1);
+            setActiveFilter(filterAllBtn);
 
             renderToolPage(1);
         });
 
-    // Cambiar la visibilidad de los controles de paginación según la pestaña
+    // Tabs
     const tabBtns = document.querySelectorAll('.tab-btn');
     const postsPagination = document.getElementById('posts-pagination-controls');
     const toolsPagination = document.getElementById('tools-pagination-controls');
@@ -266,7 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
             activeBtn.classList.remove('border-transparent');
         }
     
-        // Mostrar u ocultar la paginación correcta
         if (tabId === 'posts') {
             if (postsPagination) postsPagination.classList.remove('hidden');
             if (toolsPagination) toolsPagination.classList.add('hidden');
