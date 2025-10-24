@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- Carga inicial ---
-    fetch('posts.json')
+    fetch('https://k4ixer.liveblog365.com/posts.json')
         .then(res => res.json())
         .then(posts => {
             allPosts = posts.filter(p => p.tipo !== 'herramienta').map(post => ({
