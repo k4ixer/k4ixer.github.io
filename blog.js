@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- Carga inicial ---
-    fetch('https://k4ixer.liveblog365.com/posts.json')
+    fetch('posts.json')
         .then(res => res.json())
         .then(posts => {
             allPosts = posts.filter(p => p.tipo !== 'herramienta').map(post => ({
@@ -281,3 +281,4 @@ document.addEventListener("DOMContentLoaded", () => {
     
     setActiveTab('posts');
 });
+
