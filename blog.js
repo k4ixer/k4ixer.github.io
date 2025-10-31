@@ -32,62 +32,70 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Funciones para Posts ---
 
     function renderPosts(posts) {
-        postsList.innerHTML = '';
-        posts.forEach((post) => {
-            let badgeClass = "";
-            let badgeText = "";
-            switch (post.tipo) {
-                case "post":
-                    badgeClass = "bg-blue-500 text-black";
-                    badgeText = "Post";
-                    break;
-                case "writeup":
-                    badgeClass = "bg-green-500 text-black";
-                    badgeText = "Writeup";
-                    break;
-                case "herramienta":
-                    badgeClass = "bg-yellow-400 text-black";
-                    badgeText = "Herramienta";
-                    break;
-                default:
-                    badgeClass = "bg-gray-700 text-black";
-                    badgeText = "Otro";
-            }
+    postsList.innerHTML = '';
+    posts.forEach((post) => {
+        let badgeClass = "";
+        let badgeText = "";
+        // Las clases de las insignias (badges) son aceptables, pero mantendremos
+        // los colores de texto en 'text-black' para que contrasten bien.
+        switch (post.tipo) {
+            case "post":
+                badgeClass = "bg-blue-500 text-black";
+                badgeText = "Post";
+                break;
+            case "writeup":
+                badgeClass = "bg-green-500 text-black";
+                badgeText = "Writeup";
+                break;
+            case "herramienta": 
+                badgeClass = "bg-yellow-400 text-black"; 
+                badgeText = "Herramienta";
+                break;
+            default:
+                badgeClass = "bg-gray-700 text-black";
+                badgeText = "Otro";
+        }
 
-            const card = document.createElement('div');
-            card.className = `bg-gray-900 rounded-lg shadow-sm p-4 flex flex-col justify-between border border-gray-800 transition-all duration-300 cursor-pointer`;
-            
-            card.innerHTML = `
-                <div>
-                    <h3 class="text-lg font-bold text-gray-100 mb-2">${post.nombre}</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-2">${post.descripcion}</p>
-                    <span class="inline-block px-2 py-1 text-xs font-semibold rounded ${badgeClass} mb-2">${badgeText}</span>
-                </div>
-                <a href="/${post.ruta}" class="mt-2 px-4 py-1 border border-gray-600 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 hover:border-gray-400 transition duration-200 ease-in-out text-sm font-medium text-center">
-                    Leer
-                </a>
-            `;
-            postsList.appendChild(card);
-        });
-    }
+        const card = document.createElement('div');
+        // APLICADO: Usamos la clase 'card' global para el fondo y borde
+        // y eliminamos las clases de redondeo y sombra para ser rectangular.
+        card.className = `card p-4 flex flex-col justify-between transition-all duration-300 cursor-pointer`;
+        
+        card.innerHTML = `
+            <div>
+                <h3 class="text-lg font-bold text-gray-100 mb-2">${post.nombre}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-2">${post.descripcion}</p>
+                <span class="inline-block px-2 py-1 text-xs font-semibold ${badgeClass} mb-2">${badgeText}</span>
+            </div>
+            <a href="/${post.ruta}" 
+               class="mt-2 px-4 py-1 border border-neutral-800 bg-neutral-900 text-gray-200 
+                      hover:bg-neutral-800 transition duration-200 ease-in-out text-sm font-medium text-center">
+                Leer
+            </a>
+        `;
+        postsList.appendChild(card);
+    });
+}
 
     function showPost(post) {
         fetch(`/${post.ruta}`)
             .then(res => res.text())
             .then(md => {
                 postView.innerHTML = `
-                    <div class="bg-gray-900 rounded-lg shadow-md p-6 sm:p-5 border border-gray-800">
-                        <button id="back-top" class="mb-4 px-4 py-1 border border-gray-600 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 hover:border-gray-400 transition duration-200 ease-in-out text-sm font-medium">
-                            ← Atrás
-                        </button>
-                        <div class="markdown-body mt-4 text-left">
-                            ${marked.parse(md)}
-                        </div>
-                        <button id="back-bottom" class="mt-6 px-6 py-2 border border-gray-600 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 hover:border-gray-400 transition duration-200 ease-in-out text-sm font-medium">
-                            ← Atrás
-                        </button>
-                    </div>
-                `;
+            <div class="card p-6 sm:p-8"> <button id="back-top" class="mb-4 px-4 py-1 border border-neutral-800 bg-neutral-900 text-gray-200 hover:bg-neutral-800 transition duration-200 ease-in-out text-sm font-medium">
+                    ← Atrás
+                </button>
+                <h1 class="text-3xl font-bold mb-4 text-gray-100">${post.nombre}</h1> <p class="text-sm text-gray-500 mb-6">Tipo: ${post.tipo} | ${new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
+                <div class="markdown-content text-left text-gray-300 space-y-4"> 
+                    ${marked.parse(md)}
+                </div>
+                
+                <button id="back-bottom" class="mt-8 px-6 py-2 border border-neutral-800 bg-neutral-900 text-gray-200 hover:bg-neutral-800 transition duration-200 ease-in-out text-sm font-medium">
+                    ← Atrás
+                </button>
+            </div>
+        `;
                 postsListWrapper.classList.add("hidden");
                 postView.classList.remove("hidden");
                 
@@ -138,24 +146,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Funciones para Herramientas ---
 
     function renderTools(tools) {
-        toolsList.innerHTML = '';
-        tools.forEach((tool) => {
-            const card = document.createElement('div');
-            card.className = `bg-gray-900 rounded-lg shadow-sm p-4 flex flex-col justify-between border border-gray-800 transition-all duration-300 cursor-pointer`;
-            
-            card.innerHTML = `
-                <div>
-                    <h3 class="text-lg font-bold text-gray-100 mb-2">${tool.nombre}</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-2">${tool.descripcion}</p>
-                    <span class="inline-block px-2 py-1 text-xs font-semibold rounded bg-yellow-400 text-black mb-2">Herramienta</span>
-                </div>
-                <a href="${tool.url}" target="_blank" class="mt-2 px-4 py-1 border border-gray-600 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 hover:border-gray-400 transition duration-200 ease-in-out text-sm font-medium text-center">
-                    Ver en GitHub
-                </a>
-            `;
-            toolsList.appendChild(card);
-        });
-    }
+    toolsList.innerHTML = '';
+    tools.forEach((tool) => {
+        const card = document.createElement('div');
+        // APLICADO: Usamos la clase 'card' para aplicar el fondo y borde personalizado
+        // y eliminamos 'rounded-lg' y 'shadow-sm' para ser rectangular.
+        card.className = `card p-4 flex flex-col justify-between transition-all duration-300 cursor-pointer`;
+        
+        card.innerHTML = `
+            <div>
+                <h3 class="text-lg font-bold text-gray-100 mb-2">${tool.nombre}</h3>
+                <p class="text-gray-400 text-sm leading-relaxed mb-2">${tool.descripcion}</p>
+                <span class="inline-block px-2 py-1 text-xs font-semibold bg-yellow-400 text-black mb-2">Herramienta</span>
+            </div>
+            <a href="${tool.url}" target="_blank" 
+               class="mt-2 px-4 py-1 border border-neutral-800 bg-neutral-900 text-gray-200 
+                      hover:bg-neutral-800 transition duration-200 ease-in-out text-sm font-medium text-center">
+                Ver en GitHub
+            </a>
+        `;
+        toolsList.appendChild(card);
+    });
+}
     
     function renderToolPage(page) {
         currentToolPage = page;

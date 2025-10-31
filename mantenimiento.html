@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,14 +8,38 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" href="imagenPerfil_1.png" type="image/x-icon">
     <meta name="color-scheme" content="dark" />
+    
+    <style>
+        /* ESTILO PRINCIPAL: Todo rectangular */
+        * {
+            border-radius: 0 !important;
+        }
+
+        /* AJUSTE DE COLOR BASE: Fondo negro puro */
+        body {
+            background: #000;
+            color: #e5e7eb; /* gray-200 */
+        }
+
+        /* ESTILO PARA BOTONES/INPUTS: Consistente con el index */
+        a.button-style,
+        button {
+            border-radius: 0 !important;
+            border: 1px solid #1f1f1f !important;
+            background: #0a0a0a !important;
+            transition: background .2s, border-color .2s, color .2s, box-shadow .2s;
+        }
+    </style>
 </head>
-<body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col items-center justify-center font-sans text-center px-6">
+
+<body class="bg-black text-gray-200 min-h-screen flex flex-col items-center justify-center font-sans text-center px-6">
 
     <div class="flex flex-col items-center space-y-6">
-        <img src="imagenPerfil_1.png" alt="Logo k4ixer" class="w-28 h-28 rounded-full border-2 border-gray-700 shadow-lg" />
+        <img src="imagenPerfil_1.png" alt="Logo k4ixer" 
+             class="w-28 h-28 border-2 border-neutral-800 object-cover" />
         
         <h1 class="text-4xl font-bold tracking-tight">k4ixer</h1>
-        <p class="text-gray-400">Ciberseguridad y Hacking Ético</p>
+        <p class="text-gray-500">Alejandro Herrero</p>
 
         <div class="mt-6 max-w-md">
             <h2 class="text-2xl font-semibold mb-2">🚧 Página en mantenimiento</h2>
@@ -26,11 +51,12 @@
 
         <div class="mt-8 flex gap-4">
             <a href="https://github.com/k4ixer" target="_blank"
-               class="px-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-gray-200 hover:bg-gray-700 transition">
+               class="px-4 py-2 border border-neutral-800 bg-neutral-900 text-gray-200 
+                      hover:bg-neutral-800 transition button-style">
                 GitHub
             </a>
             <a href="/" 
-               class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">
+               class="px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 transition">
                 Volver al inicio
             </a>
         </div>

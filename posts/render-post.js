@@ -1,37 +1,41 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Lee la ruta del archivo Markdown desde una variable global
-    const markdownFilePath = window.postMarkdownPath;
+document.addEventListener("DOMContentLoaded", function() {
     const postViewSection = document.getElementById('post-view-section');
+    const markdownPath = window.postMarkdownPath;
 
-    if (!markdownFilePath) {
-        postViewSection.innerHTML = '<p class="text-red-500">Error: No se ha especificado la ruta del post.</p>';
-        return;
-    }
+    if (!markdownPath) return;
 
-    fetch(markdownFilePath)
-        .then(res => {
-            if (!res.ok) {
-                throw new Error(`Error HTTP: ${res.status}`);
-            }
-            return res.text();
-        })
-        .then(md => {
+    fetch(markdownPath)
+        .then(response => response.text())
+        .then(markdownText => {
+            
+            // Suponemos que quieres el título del post
+            const postTitle = document.title.replace('k4ixer - ', ''); 
+            
+            // APLICADO: Estructura de la tarjeta y clases de botón consistentes
             postViewSection.innerHTML = `
-                <div class="bg-gray-900 rounded-lg shadow-md p-6 sm:p-5 border border-gray-800">
-                    <a href="/" class="mb-4 inline-block px-4 py-1 border border-gray-600 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 hover:border-gray-400 transition duration-200 ease-in-out text-sm font-medium">
-                        ← Atrás
+                <div class="card p-6 sm:p-8">
+                    <a href="/index.html" class="mb-6 inline-block 
+                        px-4 py-1 border border-neutral-800 bg-neutral-900 text-gray-200 
+                        hover:bg-neutral-800 transition duration-200 ease-in-out text-sm font-medium">
+                        ← Volver al Índice
                     </a>
-                    <div class="markdown-body mt-4 text-left">
-                        ${marked.parse(md)}
-                    </div>
-                    <a href="/" class="mt-6 inline-block px-6 py-2 border border-gray-600 bg-gray-800 text-gray-200 rounded-md hover:bg-gray-700 hover:border-gray-400 transition duration-200 ease-in-out text-sm font-medium">
-                        ← Atrás
+                    <h1 class="text-3xl font-bold mb-2 text-gray-100">${postTitle}</h1>
+                    <span class="inline-block px-2 py-1 text-xs font-semibold bg-green-500 text-black mb-6">Writeup</span>
+
+                    <div class="markdown-content text-left space-y-4">
+    ${marked.parse(markdownText)}
+</div>
+                    
+                    <a href="/index.html" class="mt-8 inline-block 
+                        px-6 py-2 border border-neutral-800 bg-neutral-900 text-gray-200 
+                        hover:bg-neutral-800 transition duration-200 ease-in-out text-sm font-medium">
+                        ← Volver al Índice
                     </a>
                 </div>
             `;
         })
-        .catch(err => {
-            postViewSection.innerHTML = `<p class="text-red-500">Error al cargar el post: ${err.message}</p>`;
-            console.error(err);
+        .catch(error => {
+            postViewSection.innerHTML = `<p class="text-red-500">Error al cargar el post: ${error}</p>`;
+            console.error(error);
         });
 });
