@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Organizador de tareas | k4ixer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <meta name="color-scheme" content="dark" />
+</head>
+
+<body class="bg-black text-gray-200 min-h-screen flex flex-col font-sans">
+
+    <!-- HEADER -->
+    <header class="w-full px-6 pt-8 pb-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="flex flex-col items-center sm:items-start">
+            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-1">k4ixer</h1>
+            <p class="text-base text-gray-500">Alejandro Herrero</p>
+        </div>
+
+        <nav class="flex gap-4 sm:gap-6 mt-4 sm:mt-0">
+            <a href="#"
+                class="text-gray-200 font-medium pb-1 border-b-2 border-transparent hover:border-gray-500 transition">Organizador de tareas</a>
+        </nav>
+    </header>
+
+    <hr class="w-full border-neutral-800" />
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 px-6 py-8 w-full full-width-grid grid grid-cols-1 md:grid-cols-6 gap-8">
+
+        <!-- ASIDE IZQUIERDO -->
+        <aside class="hidden md:flex flex-col items-start gap-4 sticky top-8 h-fit col-span-1">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <img src="imagenPerfil_1.png" alt="Perfil de Alejandro Herrero"
+                    class="w-28 h-28 border-2 border-neutral-800 object-cover" />
+                <div class="flex flex-col items-center md:items-start">
+                    <h2 class="text-xl font-semibold">Alejandro Herrero</h2>
+                    <p class="text-sm text-gray-500">Ciberseguridad y Hacking Ético</p>
+                </div>
+            </div>
+
+            <p class="text-gray-300 text-sm mt-2 leading-relaxed">
+                Soy un apasionado de la ciberseguridad y el hacking ético. Portfolio y blog personal.
+            </p>
+
+            <div class="flex gap-4 text-gray-500 mt-2">
+                <a href="https://github.com/k4ixer" target="_blank" class="hover:text-gray-200 transition">GitHub</a>
+            </div>
+        </aside>
+
+        <!-- TODO LIST -->
+        <section class="col-span-1 md:col-span-5 w-full">
+            <div class="mb-4 flex justify-end gap-2">
+                <button id="newTaskBtn"
+                    class="px-4 py-2 bg-neutral-900 text-gray-200 border border-neutral-800 hover:bg-neutral-800 transition">
+                    ➕ Nueva tarea
+                </button>
+                <button id="newDayBtn"
+                    class="px-4 py-2 bg-red-900 text-gray-200 border border-neutral-800 hover:bg-red-800 transition">
+                    🌅 Iniciar nuevo día
+                </button>
+            </div>
+
+            <div id="taskContainer" class="flex flex-col gap-4"></div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-transparent text-gray-600 text-center py-6 border-t border-neutral-900 w-full">
+        <p>&copy; 2025 Alejandro Herrero | k4ixer</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
