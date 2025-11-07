@@ -4,34 +4,27 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>k4ixer | Hotel - Writeup HackMyVm</title> 
+    <title>k4ixer | Hotel - Writeup HackMyVm</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link rel="stylesheet" href="../post.css"> <link rel="icon" href="../imagenPerfil_1.png" type="image/x-icon"> <meta name="color-scheme" content="dark" />
+    <link rel="stylesheet" href="../post.css">
+    <link rel="icon" href="../imagenPerfil_1.png" type="image/x-icon">
+    <meta name="color-scheme" content="dark" />
     <meta name="google-site-verification" content="bYF5zd8Gzidf5AA2J1B78a0XT1d_jDI-11w8WnplglY" />
 
     <style>
-        /* Todo rectangular */
         * {
             border-radius: 0 !important;
         }
 
-        /* Opcional: asegurar que el contenido interior aproveche el ancho máximo */
-        .full-width-grid {
-            max-width: none;
-            width: 100%;
-        }
-
-        /* Text y fondo */
         body {
             color: #e5e7eb;
             background: #000;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Inputs y botones (Aseguramos que los botones de "volver" sean consistentes) */
         input,
         button {
-            border-radius: 0 !important;
             border: 1px solid #1f1f1f !important;
             background: #0a0a0a !important;
         }
@@ -41,128 +34,68 @@
             box-shadow: 0 0 0 1px #3b82f6;
         }
 
-        /* Transiciones suaves */
         button,
         a {
             transition: background .2s, border-color .2s, color .2s, box-shadow .2s;
         }
 
-        /* Cards globales para fallback */
         .card {
             background: rgba(15, 15, 15, 0.7);
             border: 1px solid #1f1f1f;
         }
-        
-        /* ESTILOS AÑADIDOS PARA EL CONTENIDO MARKDOWN (Necesario para que se vea bien) */
-        .markdown-content h1 {
-            font-size: 2.25rem; font-weight: 700; margin-top: 1.5rem; margin-bottom: 0.75rem;
-            color: #f3f4f6; border-bottom: 1px solid #1f2937; padding-bottom: 0.5rem;
+
+        .tab-btn.active {
+            border-bottom: 2px solid #3b82f6;
+            color: #fff;
         }
-        .markdown-content h2 {
-            font-size: 1.875rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.75rem;
-            color: #f3f4f6;
-        }
-        .markdown-content p {
-            margin-bottom: 1rem; line-height: 1.75; color: #d1d5db;
-        }
-        .markdown-content a {
-            color: #3b82f6; text-decoration: underline;
-        }
-        .markdown-content pre {
-            background-color: #1f2937; color: #f3f4f6; padding: 1rem;
-            overflow-x: auto; border: 1px solid #374151; margin-bottom: 1.5rem;
-        }
-        .markdown-content code {
-            background-color: #374151; padding: 0.2rem 0.4rem; font-size: 85%;
-        }
-        .markdown-content pre code {
-            background-color: transparent; padding: 0;
-        }
-        .markdown-content ul, .markdown-content ol {
-            margin-left: 1.5rem; margin-bottom: 1rem; color: #d1d5db;
-        }
-        .markdown-content ul { list-style-type: disc; }
-        .markdown-content ol { list-style-type: decimal; }
     </style>
-    
-    <script>
-        window.postMarkdownPath = '../posts/hotel_writeup.md';
-    </script>
 </head>
 
-<body class="bg-black text-gray-200 min-h-screen flex flex-col font-sans">
+<body class="min-h-screen flex flex-col">
 
-    <header class="w-full px-6 pt-8 pb-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div class="flex flex-col items-center sm:items-start">
-            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-1">k4ixer</h1>
-            <p class="text-base text-gray-500">Alejandro Herrero</p>
-        </div>
-
-        <nav class="flex gap-4 sm:gap-6 mt-4 sm:mt-0">
-            <a href="/index.html"
-                class="tab-btn text-gray-200 font-medium pb-1 border-b-2 border-transparent hover:border-gray-500 transition whitespace-nowrap">Posts</a>
-            <a href="/index.html"
-                class="tab-btn text-gray-200 font-medium pb-1 border-b-2 border-transparent hover:border-gray-500 transition whitespace-nowrap">Mis
-                herramientas</a>
-            <a href="/index.html"
-                class="tab-btn text-gray-200 font-medium pb-1 border-b-2 border-transparent hover:border-gray-500 transition whitespace-nowrap md:hidden">Sobre
-                mí</a>
-        </nav>
-    </header>
-
-    <hr class="w-full border-neutral-800" />
-
-    <main class="flex-1 px-6 py-8 w-full full-width-grid grid grid-cols-1 md:grid-cols-6 gap-8">
-        <aside class="hidden md:flex flex-col items-start gap-4 sticky top-8 h-fit col-span-1">
-            <div class="flex flex-col items-center md:items-start gap-4">
-                <img src="../imagenPerfil_1.png" alt="Perfil de k4ixer"
-                    class="w-28 h-28 border-2 border-neutral-800 object-cover" />
-                <div class="flex flex-col items-center md:items-start">
-                    <h2 class="text-xl font-semibold">Alejandro Herrero</h2>
-                    <p class="text-sm text-gray-500">Ciberseguridad y Hacking Ético</p>
+    <!-- HEADER -->
+    <header class="w-full px-6 py-8 border-b border-neutral-900">
+        <div class="max-w-7xl mx-auto flex justify-between items-center flex-wrap gap-4">
+            <div class="flex items-center gap-4">
+                <img src="../imagenPerfil_1.png" alt="Perfil de k4ixer" class="w-16 h-16 border border-neutral-800 object-cover" />
+                <div>
+                    <h1 class="text-3xl font-bold">k4ixer</h1>
+                    <p class="text-gray-500">Alejandro Herrero</p>
                 </div>
             </div>
 
-            <p class="text-gray-300 text-sm mt-2 leading-relaxed">
-                Soy un apasionado de la ciberseguridad y el hacking ético. Portfolio y blog personal.
-            </p>
+            <nav class="hidden md:flex gap-8 text-lg">
+                <a href="/index.html" class="tab-btn">Posts</a>
+                <a href="/index.html" class="tab-btn">Mis herramientas</a>
+                <a href="/index.html" class="tab-btn">Sobre mí</a>
+            </nav>
 
-            <div class="flex gap-4 text-gray-500 mt-2">
-                <a href="https://github.com/k4ixer" target="_blank" class="hover:text-gray-200 transition">GitHub</a>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
             </div>
-        </aside>
+        </div>
+    </header>
 
-        <div class="col-span-1 md:col-span-5 w-full">
-            
-            <section id="post-view-section" class="w-full">
-                <h2 class="text-2xl font-semibold mb-6">Cargando Post...</h2>
-            </section>
-
-            </div>
+    <!-- MAIN -->
+    <main class="flex-1 px-6 py-8 w-full max-w-7xl mx-auto">
+        <div id="post-view-section" class="w-full">
+            <!-- El contenido del post se cargará aquí -->
+        </div>
     </main>
 
-    <footer class="bg-transparent text-gray-600 text-center py-6 border-t border-neutral-900 w-full">
+    <!-- FOOTER -->
+    <footer class="text-gray-600 text-center py-6 border-t border-neutral-900 mt-8">
         <p>&copy; 2025 k4ixer | Alejandro Herrero</p>
     </footer>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const oldPostId = urlParams.get('md');
-
-            if (oldPostId) {
-                let newPostName = oldPostId.replace('m-quina-', '');
-                if (newPostName.endsWith('-easy')) {
-                    newPostName = newPostName.slice(0, -5);
-                }
-                // La redirección apunta a la ruta de los posts
-                const newPath = `posts/${newPostName}_writeup.html`; 
-                window.location.replace(newPath);
-            }
-        });
+        window.postMarkdownPath = '../posts/hotel_writeup.md';
     </script>
-
-    <script src="render-post.js"></script> 
+    <script src="../posts/render-post.js"></script>
 </body>
-
 </html>

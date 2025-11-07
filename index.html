@@ -13,27 +13,18 @@
     <meta name="google-site-verification" content="bYF5zd8Gzidf5AA2J1B78a0XT1d_jDI-11w8WnplglY" />
 
     <style>
-        /* Todo rectangular */
         * {
             border-radius: 0 !important;
         }
 
-        /* Opcional: asegurar que el contenido interior aproveche el ancho máximo */
-        .full-width-grid {
-            max-width: none;
-            width: 100%;
-        }
-
-        /* Text y fondo */
         body {
             color: #e5e7eb;
             background: #000;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* Inputs y botones */
         input,
         button {
-            border-radius: 0 !important;
             border: 1px solid #1f1f1f !important;
             background: #0a0a0a !important;
         }
@@ -43,164 +34,179 @@
             box-shadow: 0 0 0 1px #3b82f6;
         }
 
-        /* Transiciones suaves */
         button,
         a {
             transition: background .2s, border-color .2s, color .2s, box-shadow .2s;
         }
 
-        /* Cards globales para fallback */
         .card {
             background: rgba(15, 15, 15, 0.7);
             border: 1px solid #1f1f1f;
         }
+
+        .tab-btn.active {
+            border-bottom: 2px solid #3b82f6;
+            color: #fff;
+        }
     </style>
 </head>
 
-<body class="bg-black text-gray-200 min-h-screen flex flex-col font-sans">
+<body class="min-h-screen flex flex-col">
 
-    <header class="w-full px-6 pt-8 pb-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-        <div class="flex flex-col items-center sm:items-start">
-            <h1 class="text-3xl sm:text-4xl font-bold tracking-tight mb-1">k4ixer</h1>
-            <p class="text-base text-gray-500">Alejandro Herrero</p>
-        </div>
-
-        <nav class="flex gap-4 sm:gap-6 mt-4 sm:mt-0">
-            <button id="tab-posts"
-                class="tab-btn text-gray-200 font-medium pb-1 border-b-2 border-transparent hover:border-gray-500 transition whitespace-nowrap">Posts</button>
-            <button id="tab-tools"
-                class="tab-btn text-gray-200 font-medium pb-1 border-b-2 border-transparent hover:border-gray-500 transition whitespace-nowrap">Mis
-                herramientas</button>
-            <button id="tab-sobremi"
-                class="tab-btn text-gray-200 font-medium pb-1 border-b-2 border-transparent hover:border-gray-500 transition whitespace-nowrap md:hidden">Sobre
-                mí</button>
-        </nav>
-    </header>
-
-    <hr class="w-full border-neutral-800" />
-
-    <main class="flex-1 px-6 py-8 w-full full-width-grid grid grid-cols-1 md:grid-cols-6 gap-8">
-        <!-- Aside ocupa 1 columna en md y el contenido principal 5 -->
-        <aside class="hidden md:flex flex-col items-start gap-4 sticky top-8 h-fit col-span-1">
-            <div class="flex flex-col items-center md:items-start gap-4">
-                <img src="imagenPerfil_1.png" alt="Perfil de k4ixer"
-                    class="w-28 h-28 border-2 border-neutral-800 object-cover" />
-                <div class="flex flex-col items-center md:items-start">
-                    <h2 class="text-xl font-semibold">Alejandro Herrero</h2>
-                    <p class="text-sm text-gray-500">Ciberseguridad y Hacking Ético</p>
+    <!-- HEADER -->
+    <header class="w-full px-6 py-8 border-b border-neutral-900">
+        <div class="max-w-7xl mx-auto flex justify-between items-center flex-wrap gap-4">
+            <div class="flex items-center gap-4">
+                <img src="imagenPerfil_1.png" alt="Perfil de k4ixer" class="w-16 h-16 border border-neutral-800 object-cover" />
+                <div>
+                    <h1 class="text-3xl font-bold">k4ixer</h1>
+                    <p class="text-gray-500">Alejandro Herrero</p>
                 </div>
             </div>
 
-            <p class="text-gray-300 text-sm mt-2 leading-relaxed">
-                Soy un apasionado de la ciberseguridad y el hacking ético. Portfolio y blog personal.
-            </p>
+            <nav class="hidden md:flex gap-8 text-lg">
+                <button id="tab-posts" class="tab-btn active">Posts</button>
+                <button id="tab-tools" class="tab-btn">Mis herramientas</button>
+                <button id="tab-sobremi" class="tab-btn">Sobre mí</button>
+            </nav>
 
-            <div class="flex gap-4 text-gray-500 mt-2">
-                <a href="https://github.com/k4ixer" target="_blank" class="hover:text-gray-200 transition">GitHub</a>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
             </div>
-        </aside>
+        </div>
 
-        <div class="col-span-1 md:col-span-5 w-full">
+        <!-- menú móvil -->
+        <div id="mobile-menu" class="hidden md:hidden mt-4">
+            <nav class="flex flex-col gap-4 text-lg items-center">
+                <button id="tab-posts-mobile" class="tab-btn active">Posts</button>
+                <button id="tab-tools-mobile" class="tab-btn">Mis herramientas</button>
+                <button id="tab-sobremi-mobile" class="tab-btn">Sobre mí</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="flex-1 px-6 py-8 w-full max-w-7xl mx-auto">
+        <div id="content-wrapper">
+            <!-- POSTS -->
             <section id="posts-section" class="tab-content w-full">
                 <div id="posts-list-wrapper" class="w-full">
-                    <h2 class="text-2xl font-semibold mb-6">Posts</h2>
-
-                    <div class="relative mb-4 flex gap-2 items-center">
-                        <div class="relative flex-1">
-                            <input id="search-input" type="text" placeholder="Buscar" class="w-full pl-10 pr-4 py-1 bg-neutral-900 text-gray-200 border border-neutral-800 
-                            placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 
-                            focus:border-blue-500 transition-all" />
-
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-semibold">Posts</h2>
+                        <div class="relative">
+                            <input id="search-input" type="text" placeholder="Buscar..."
+                                class="w-full pl-10 pr-4 py-2 text-gray-200 border border-neutral-800" />
                             <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5"
                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
                         </div>
-
-                        <button id="filter-all"
-                            class="px-3 py-1 bg-neutral-900 text-gray-200 border border-neutral-800 hover:bg-neutral-800 transition">Todos</button>
-                        <button id="filter-posts"
-                            class="px-3 py-1 bg-neutral-900 text-gray-200 border border-neutral-800 hover:bg-neutral-800 transition">Posts</button>
-                        <button id="filter-writeups"
-                            class="px-3 py-1 bg-neutral-900 text-gray-200 border border-neutral-800 hover:bg-neutral-800 transition">Writeups</button>
                     </div>
 
-                    <div id="posts-list" class="grid gap-6 w-full"></div>
+                    <div class="flex gap-4 mb-6">
+                        <button id="filter-all" class="px-3 py-1 border border-neutral-800 bg-neutral-900">Todos</button>
+                        <button id="filter-posts"
+                            class="px-3 py-1 border border-neutral-800 bg-neutral-900">Posts</button>
+                        <button id="filter-writeups"
+                            class="px-3 py-1 border border-neutral-800 bg-neutral-900">Writeups</button>
+                    </div>
 
-                    <div id="pagination-controls" class="flex justify-center mt-8 gap-4">
+                    <div id="posts-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+
+                    <div id="pagination-controls" class="flex justify-center mt-8 gap-4 items-center">
                         <button id="prev-page"
-                            class="px-4 py-2 bg-neutral-900 text-gray-200 border border-neutral-800 hover:bg-neutral-800 transition"
-                            disabled>←</button>
-                        <span id="posts-page-indicator" class="text-gray-500 text-sm">1 / 1</span>
+                            class="px-4 py-2 border border-neutral-800 bg-neutral-900 text-gray-300 hover:bg-neutral-800 transition"
+                            disabled>← Anterior</button>
+                        <span id="posts-page-indicator" class="text-gray-500">Página 1 / 1</span>
                         <button id="next-page"
-                            class="px-4 py-2 bg-neutral-900 text-gray-200 border border-neutral-800 hover:bg-neutral-800 transition"
-                            disabled>→</button>
+                            class="px-4 py-2 border border-neutral-800 bg-neutral-900 text-gray-300 hover:bg-neutral-800 transition"
+                            disabled>Siguiente →</button>
                     </div>
                 </div>
-
                 <div id="post-view" class="hidden flex-1 w-full"></div>
             </section>
 
+            <!-- TOOLS -->
             <section id="tools-section" class="tab-content hidden w-full">
                 <h2 class="text-2xl font-semibold mb-6">Mis herramientas</h2>
-                <div id="tools-list" class="grid gap-6 w-full"></div>
-                <div id="tools-pagination-controls" class="flex justify-center mt-8 gap-4">
+                <div id="tools-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+                <div id="tools-pagination-controls" class="flex justify-center mt-8 gap-4 items-center">
                     <button id="prev-tool-page"
-                        class="px-4 py-2 bg-neutral-900 text-gray-200 border border-neutral-800 hover:bg-neutral-800 transition"
-                        disabled>←</button>
-                    <span id="tools-page-indicator" class="text-gray-500 text-sm">1 / 1</span>
+                        class="px-4 py-2 border border-neutral-800 bg-neutral-900 text-gray-300 hover:bg-neutral-800 transition"
+                        disabled>← Anterior</button>
+                    <span id="tools-page-indicator" class="text-gray-500">Página 1 / 1</span>
                     <button id="next-tool-page"
-                        class="px-4 py-2 bg-neutral-900 text-gray-200 border border-neutral-800 hover:bg-neutral-800 transition"
-                        disabled>→</button>
+                        class="px-4 py-2 border border-neutral-800 bg-neutral-900 text-gray-300 hover:bg-neutral-800 transition"
+                        disabled>Siguiente →</button>
                 </div>
             </section>
 
-            <section id="sobremi-section" class="tab-content hidden md:hidden w-full">
+            <!-- SOBRE MI -->
+            <section id="sobremi-section" class="tab-content hidden w-full">
                 <h2 class="text-2xl font-semibold mb-6">Sobre mí</h2>
-
-                <div class="flex flex-col items-center md:items-start gap-4">
+                <div class="card p-8 text-center">
                     <img src="imagenPerfil_1.png" alt="Perfil de k4ixer"
-                        class="w-28 h-28 border-2 border-neutral-800 object-cover" />
-                    <div class="flex flex-col items-center md:items-start">
-                        <h2 class="text-xl font-semibold">Alejandro Herrero</h2>
-                        <p class="text-sm text-gray-500">Ciberseguridad y Hacking Ético</p>
+                        class="w-32 h-32 border border-neutral-800 object-cover mx-auto mb-4" />
+                    <h2 class="text-2xl font-semibold">Alejandro Herrero</h2>
+                    <p class="text-base text-gray-500">Ciberseguridad y Hacking Ético</p>
+                    <p class="text-gray-300 mt-4 max-w-2xl mx-auto">
+                        Soy un apasionado de la ciberseguridad y el hacking ético. Este es mi espacio personal donde
+                        comparto mis conocimientos y experiencias.
+                    </p>
+                    <div class="flex justify-center gap-4 text-gray-500 mt-4">
+                        <a href="https://github.com/k4ixer" target="_blank"
+                            class="hover:text-gray-200 transition">GitHub</a>
                     </div>
-                </div>
-
-                <p class="text-gray-300 text-sm mt-4 leading-relaxed">
-                    Soy un apasionado de la ciberseguridad y el hacking ético. Este es mi espacio personal.
-                </p>
-
-                <div class="flex gap-4 text-gray-500 mt-4">
-                    <a href="https://github.com/k4ixer" target="_blank"
-                        class="hover:text-gray-200 transition">GitHub</a>
                 </div>
             </section>
         </div>
     </main>
 
-    <footer class="bg-transparent text-gray-600 text-center py-6 border-t border-neutral-900 w-full">
+    <!-- FOOTER -->
+    <footer class="text-gray-600 text-center py-6 border-t border-neutral-900 mt-8">
         <p>&copy; 2025 k4ixer | Alejandro Herrero</p>
     </footer>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const oldPostId = urlParams.get('md');
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-            if (oldPostId) {
-                let newPostName = oldPostId.replace('m-quina-', '');
-                if (newPostName.endsWith('-easy')) {
-                    newPostName = newPostName.slice(0, -5);
-                }
-                const newPath = `posts/${newPostName}_writeup.html`;
-                window.location.replace(newPath);
-            }
+            menuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const tabs = ['posts', 'tools', 'sobremi'];
+
+            tabs.forEach(tab => {
+                const desktopBtn = document.getElementById(`tab-${tab}`);
+                const mobileBtn = document.getElementById(`tab-${tab}-mobile`);
+                const section = document.getElementById(`${tab}-section`);
+
+                const handleTabClick = () => {
+                    tabs.forEach(t => {
+                        document.getElementById(`tab-${t}`).classList.remove('active');
+                        if (document.getElementById(`tab-${t}-mobile`))
+                            document.getElementById(`tab-${t}-mobile`).classList.remove('active');
+                        document.getElementById(`${t}-section`).classList.add('hidden');
+                    });
+                    desktopBtn.classList.add('active');
+                    if (mobileBtn) mobileBtn.classList.add('active');
+                    section.classList.remove('hidden');
+                };
+
+                desktopBtn.addEventListener('click', handleTabClick);
+                if (mobileBtn) mobileBtn.addEventListener('click', handleTabClick);
+            });
         });
     </script>
 
     <script src="blog.js"></script>
 </body>
-
 </html>
